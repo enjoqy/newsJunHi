@@ -24,7 +24,7 @@
     NewsService newsService = new NewsServiceImpl();
     int rows = newsService.updateNewsById(id);
     if (rows > 0) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp?id=" + id);
     } else {
 %>
 <h4>删除失败</h4>

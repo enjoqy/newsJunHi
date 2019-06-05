@@ -18,11 +18,12 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
 
-<%--    <c:out ></c:out>--%>
+    <%--    <c:out ></c:out>--%>
 
     <jsp:useBean id="newsServiceImpl" class="org.zhh.service.impl.NewsServiceImpl"/>
 
@@ -84,8 +85,8 @@
 <div id="mydiv">
     <body>
         <%
-//        List<News> newsAll = newsServiceImpl.getNewsAll();
-        NewsServiceImpl newsService = new NewsServiceImpl();
+//          List<News> newsAll = newsServiceImpl.getNewsAll();
+            NewsServiceImpl newsService = new NewsServiceImpl();
             //获取当前页
             String sPageIndex = request.getParameter("pageIndex");
             Integer pageIndex = 1;
@@ -96,8 +97,6 @@
             }
             //获取总数据量
             Integer newsCount = newsService.getNewsCount();
-
-
 
             //设置每页容量
             Integer pageSize = 6;
@@ -118,8 +117,10 @@
 
             //获取当前页的新闻
             List<News> newsAll = newsService.getNewsByPage(pageIndex, pageSize);
-
-
+            request.setAttribute("newsAll", newsAll);
+            request.setAttribute("newsCount", newsCount);
+            request.setAttribute("pageIndex", pageIndex);
+            request.setAttribute("pageCount", pageCount);
 %>
     <a id="add" href="add.jsp">点击添加新闻</a><br>
     <a href="admin/admin.jsp">点击跳转管理页</a><br>
@@ -132,40 +133,32 @@
             <th>删除</th>
             <th>修改</th>
         </tr>
-        <%
-            for (News news : newsAll) {
-                request.setAttribute("news", news);
-        %>
+        <%--        <%--%>
+        <%--            for (News news : newsAll) {--%>
+        <%--                request.setAttribute("news", news);--%>
+        <%--        %>--%>
 
-        <c:forEach items=""></c:forEach>
-        <tr>
-            <td>${news.id}
-            </td>
-            <td><a href="showNews.jsp?id=${news.id}">${news.title}
-            </a></td>
-            <td>$z{news.author}
-            </td>
-            <td>${news.type}
-            </td>
-            <td><a href="delete.jsp?id=${news.id}">删除</a></td>
-            <td><a href="editor.jsp?id=${news.id}">修改</a></td>
-        </tr>
-        <%}%>
+        <c:forEach items="${newsAll}" var="news">
+            <tr>
+                <td>${news.id}</td>
+                <td><a href="showNews.jsp?id=${news.id}">${news.title}</a></td>
+                <td>${news.author}</td>
+                <td>${news.type}</td>
+                <td><a href="delete.jsp?id=${news.id}">删除</a></td>
+                <td><a href="editor.jsp?id=${news.id}">修改</a></td>
+            </tr>
+            <%--        <%}%>--%>
+        </c:forEach>
     </table>
 
     <div>
-        <%
+        共有${newsCount}条数据；当前${pageIndex}页 共计${pageCount}页
 
-        %>
-        共有<%=newsCount%>条数据；当前<%=pageIndex%>页 共计<%=pageCount%>页
+        <c:if test="${pageIndex >1}">
+            <a href="index.jsp?pageIndex=1">首页</a>
+            <a href="index.jsp?pageIndex=<%=pageIndex - 1%>">上一页</a>
+        </c:if>
         <%
-            if (pageIndex > 1) {
-        %>
-        <c:if test=""></c:if>
-        <a href="index.jsp?pageIndex=1">首页</a>
-        <a href="index.jsp?pageIndex=<%=pageIndex - 1%>">上一页</a>
-        <%
-            }
             if (pageIndex < pageCount) {
         %>
         <a href="index.jsp?pageIndex=<%=pageIndex + 1%>">下一页</a>
@@ -173,7 +166,9 @@
         <%
             }
         %>
-        <form action="index.jsp">
+
+        <%--index.jsp--%>
+        <form action="#">
             <input type="number" name="pageIndex" size="2px">
             <input type="submit" value="跳转">
         </form>

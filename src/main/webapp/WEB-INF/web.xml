@@ -4,4 +4,49 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+<!--  &lt;!&ndash; 配置servlet &ndash;&gt;
+  <servlet>
+    &lt;!&ndash;servlet名称&ndash;&gt;
+    <servlet-name>ServletDemo01</servlet-name>
+    &lt;!&ndash;对应的servlet类&ndash;&gt;
+    <servlet-class>org.zhh.servlet.ServletDemo01</servlet-class>
+  </servlet>
+  &lt;!&ndash;配置sevlet映射&ndash;&gt;
+  <servlet-mapping>
+    &lt;!&ndash;要寻找servlet名称&ndash;&gt;
+    <servlet-name>ServletDemo01</servlet-name>
+    &lt;!&ndash;url地址&ndash;&gt;
+    <url-pattern>/first</url-pattern>
+  </servlet-mapping>
+
+
+    &lt;!&ndash; 配置servlet &ndash;&gt;
+    <servlet>
+        &lt;!&ndash;servlet名称&ndash;&gt;
+        <servlet-name>ServletAdd</servlet-name>
+        &lt;!&ndash;对应的servlet类&ndash;&gt;
+        <servlet-class>org.zhh.servlet.ServletAddNews</servlet-class>
+    </servlet>
+    &lt;!&ndash;配置sevlet映射&ndash;&gt;
+    <servlet-mapping>
+        &lt;!&ndash;要寻找servlet名称&ndash;&gt;
+        <servlet-name>ServletAdd</servlet-name>
+        &lt;!&ndash;url地址&ndash;&gt;
+        <url-pattern>/saveAdd</url-pattern>
+    </servlet-mapping>-->
+
+<!--
+  <filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.zhh.servlet.filter.EncodingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+-->
+
+
 </web-app>

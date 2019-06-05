@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+
+    <!--    <script src="js/jquery-3.4.0.js"></script>-->
+    <!-- 线性粒子背景特效 -->
+    <script type="text/javascript" src="js/canvas-particle.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            //配置
+            var config = {
+                vx: 4, //小球x轴速度,正为右，负为左
+                vy: 4, //小球y轴速度
+                height: 2, //小球高宽，其实为正方形，所以不宜太大
+                width: 2,
+                count: 70, //点个数
+                color: "121, 162, 185", //点颜色
+                stroke: "220,220,220", //线条颜色
+                dist: 3000, //点吸附距离
+                e_dist: 10000, //鼠标吸附加速距离
+                max_conn: 10
+                //点到点最大连接数
+            }
+            //调用
+            CanvasParticle(config);
+        }
+    </script>
+
+    <style>
+        .rg_layout {
+            width: 820px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .rg_form_left {
+            margin-left: 50px;
+        }
+
+        .rg_form_center {
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="mydiv" style="height: auto;">
+    <div class="rg_layout">
+        <div class="rg_form_left">
+            <p>新用户注册</p>
+            <p>USER REGISTER</p>
+        </div>
+
+        <div class="rg_form_center">
+            <div id="errorMsg" style="color:red;text-align: center; height: 20px; position: relative; top: 15px;"></div>
+            <!--注册表单-->
+            <form id="registerForm" action="/user/register">
+                <!--提交处理请求的标识符-->
+                <input type="hidden" name="action" value="register">
+                <table style="margin-top: 25px;">
+                    <tr>
+                        <td class="td_left">
+                            <label for="username">用户名</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="text" id="username" name="username" placeholder="请输入账号">
+                        </td>
+                        <td>
+                            <label id="username_msg"></label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="password">密码</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="text" id="password" name="password" placeholder="请输入密码">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="email">Email</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="text" id="email" name="email" placeholder="请输入Email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="name">姓名</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="text" id="name" name="name" placeholder="请输入真实姓名">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="telephone">手机号</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="text" id="telephone" name="telephone" placeholder="请输入您的手机号">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="sex">性别</label>
+                        </td>
+                        <td class="td_right gender">
+                            <input type="radio" id="sex" name="sex" value="男" checked> 男
+                            <input type="radio" name="sex" value="女"> 女
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="birthday">出生日期</label>
+                        </td>
+                        <td class="td_right">
+                            <input type="date" id="birthday" name="birthday" placeholder="年/月/日">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="check">验证码</label>
+                        </td>
+                        <td class="td_right check">
+                            <input type="text" id="check" name="check" class="check">
+                            <img src="checkCode" height="32px" alt="" onclick="changeCheckCode(this)">
+                            <script type="text/javascript">
+                                //图片点击事件
+                                function changeCheckCode(img) {
+                                    img.src = "checkCode?" + new Date().getTime();
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                        </td>
+                        <td class="td_right check">
+                            <input type="submit" class="submit" value="注册">
+                            <span id="msg" style="color: red;"></span>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

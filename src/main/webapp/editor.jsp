@@ -26,7 +26,7 @@
         News news = new NewsServiceImpl().getNewsById(id);
     %>
 
-    <form method="post" action="saveEditor.jsp">
+    <form method="post" action="/news/saveEditor">
         <input type="hidden" name="id" value="<%=id%>">
         标题:<input type="text" name="title" value="<%=news.getTitle()%>"><br>
         新闻类型：<input type="text" name="type" value="<%=news.getType()%>"><br>

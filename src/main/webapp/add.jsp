@@ -15,13 +15,13 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"> </script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 </head>
 <body>
-<form method="post" action="saveAdd.jsp">
-    标题:<input type="text" name="title" ><br>
-    新闻类型：<input type="text" name="type" ><br>
-    作者:<input type="text" name="author" ><br>
+<form method="post" action="/news/saveAdd">
+    标题:<input type="text" name="title"><br>
+    新闻类型：<input type="text" name="type"><br>
+    作者:<input type="text" name="author"><br>
     内容：
     <textarea name="content" class="ckeditor">
 
